@@ -263,4 +263,4 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 #define OnPlayerWeaponShot SD_OnPlayerWeaponShot
 #if defined SD_OnPlayerWeaponShot
     forward SD_OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY, Float:fZ);
-#endif
+    #endif
