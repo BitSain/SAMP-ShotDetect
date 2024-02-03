@@ -23,7 +23,7 @@
 
 // ========== > Defines
 #define SD_MAX_WEAPONS (47)
-#define SD_DEBUG_MODE true
+#define SD_DEBUG_MODE false
 
 // ========== > Timer Functions
 forward SD_LogicTimer(playerid); //"Logic Timer"
