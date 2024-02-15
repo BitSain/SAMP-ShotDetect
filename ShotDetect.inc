@@ -153,7 +153,7 @@ public OnPlayerConnect(playerid){
 	#endif
 }
 
-public OnPlayerDisconnect(playerid){
+public OnPlayerDisconnect(playerid, reason){
 	if(SD_TPlayerShooting[playerid]) KillTimer(SD_TPlayerShooting[playerid]); //Delete Logic Timer.
 	SD_OldShotsFired[playerid] = 0; //Resets the "Old Expended Ammunition" Variable
 	SD_ShotsFired[playerid] = 0; //Resets the "Current Ammunition Expended" Variable
@@ -165,7 +165,7 @@ public OnPlayerDisconnect(playerid){
     #endif
 
 	#if defined SD_OnPlayerDisconnect
-		return SD_OnPlayerDisconnect(playerid);
+		return SD_OnPlayerDisconnect(playerid, reason);
 	#else
 	    return true;
 	#endif
@@ -242,7 +242,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 #endif
 #define OnPlayerDisconnect SD_OnPlayerDisconnect
 #if defined SD_OnPlayerDisconnect
-    forward SD_OnPlayerDisconnect(playerid);
+    forward SD_OnPlayerDisconnect(playerid, reason);
 #endif
 
 #if defined _ALS_OnPlayerUpdate
