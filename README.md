@@ -18,7 +18,7 @@ else if(!IsPlayerShooting(playerid)) //Se o valor de retorno for false, o jogado
 
 ## Contribuição
 
-Você pode contribuir comigo criando issues ou enviando solicitações de pull.
+Você pode contribuir comigo criando issues ou enviando solicitações de pull.<br>
 Projeto open-source
 
 ## Creditos
@@ -27,5 +27,5 @@ Projeto open-source
 
 ## Contato
 
-Me envie um e-mail: bitsaindeveloper@gmail.com
+Me envie um e-mail: bitsaindeveloper@gmail.com<br>
 Ou envie mensagem também pelo discord: XXXX
