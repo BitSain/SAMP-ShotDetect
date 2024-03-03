@@ -6,11 +6,11 @@ pois o SAMP (San Andreas Multiplayer) não tem uma função nativa que faz isso.
 ## Modo de Uso
 
 ```pawn
-if(IsPlayerShooting(playerid)) //Se o valor de retorno for true, o jogador está atirando
+if(IsPlayerShooting(playerid)) //If the return value is true, the player is shooting
 {
     return SendClientMessage(playerid, -1, "Você está Atirando");
 }
-else if(!IsPlayerShooting(playerid)) //Se o valor de retorno for false, o jogador não está atirando
+else if(!IsPlayerShooting(playerid)) //If the return value is false, the player is not shooting
 {
     return SendClientMessage(playerid, -1, "Você não esta Atirando");
 }
