@@ -1,31 +1,31 @@
 # SAMP-ShotDetect
 
-Esta é uma include que tem de objetivo detectar se o jogador está ou não atirando com uma arma
-pois o SAMP (San Andreas Multiplayer) não tem uma função nativa que faz isso.
+This is an include that aims to detect whether or not the player is shooting a weapon
+because SAMP (San Andreas Multiplayer) does not have a native function that does this.
 
-## Modo de Uso
+## How to Use
 
 ```pawn
 if(IsPlayerShooting(playerid)) //If the return value is true, the player is shooting
 {
-    return SendClientMessage(playerid, -1, "Você está Atirando");
+    return SendClientMessage(playerid, -1, "You are shooting");
 }
 else if(!IsPlayerShooting(playerid)) //If the return value is false, the player is not shooting
 {
-    return SendClientMessage(playerid, -1, "Você não esta Atirando");
+    return SendClientMessage(playerid, -1, "You're not shooting");
 }
 ```
 
-## Contribuição
+## Contribution
 
-Você pode contribuir comigo criando issues ou enviando solicitações de pull.<br>
-Projeto open-source
+You can contribute to me by creating issues or sending pull requests.<br>
+open-source project
 
-## Creditos
+## Credits
 
-©️ Créditos totais ao BitSain (https://github.com/BitSain)
+©️ Full credits to BitSain (https://github.com/BitSain)
 
-## Contato
+## Contact
 
-Me envie um e-mail: bitsaindeveloper@gmail.com<br>
-Ou envie mensagem também pelo discord: XXXX
+Send me an email: bitsaindeveloper@gmail.com<br>
+Or also send a message via discord: XXXX
