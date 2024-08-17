@@ -1,19 +1,19 @@
 /*
     Include name: ShotDetect (SAMP)
-    Last Update: 02/02/2024
-    Include created by BitSain()
-    ù Include open for modifications, but with my credits.
-    Include language: PT/BR Portuguese Brazil
+    Last Update: 17/08/2024
+    Include created by BitSain(bitsaindeveloper@gmail.com)
+    Include open for modifications, but with my credits.
     
-    * Lùgica da include: Primeiramente no "OnPlayerUpdate" verificamos se o jogador
-    estù com uma arma em mùos, caso esteja, criamos um timer que verifica de tempo em tempo (intervalo entre 1 tiro da arma + 60 ms) se o jogador gastou mais uma muniùùo, significa que ele esta atirando;
-    se ele nùo gastou mais nenhuma, significa que o jogador nùo esta atirando.
+    * Include logic: First in "OnPlayerUpdate" we check if the player
+    If you have a weapon in your hands, if so, we created a timer that checks from time to time --
+    (interval between 1 shot from the weapon + 60 ms) if the player has spent one more ammunition, it means he is shooting;
+    If he didn't spend any more, it means the player isn't shooting.
     
-    * OBS.: O timer se repete atù o jogador tirar a arma de mùos. Caso o jogador trocar de arma, deletamos
-    o timer da arma antiga e criamos um timer da arma nova, que tambem se repete entre o intervalo de um tiro ù outro. Verificamos tambùm se o jogador que estù segurando a arma atirou, antes de liberar a lùgica.
+    * NOTE: The timer repeats until the player takes the weapon out of their hands. If the player changes weapons, we delete
+    the timer for the old weapon and we created a timer for the new weapon, which also repeats between the intervals from one shot to the next.
+    We also check whether the player holding the gun fired, before releasing the logic.    
     
     If there is a problem, create an issue in the include repository!
-    
 */
 
 #if !defined _inc_ShotDetect
