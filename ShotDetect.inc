@@ -2,15 +2,15 @@
     Include name: ShotDetect (SAMP)
     Last Update: 02/02/2024
     Include created by BitSain()
-    © Include open for modifications, but with my credits.
+     Include open for modifications, but with my credits.
     Include language: PT/BR Portuguese Brazil
     
-    * Lógica da include: Primeiramente no "OnPlayerUpdate" verificamos se o jogador
-    está com uma arma em mãos, caso esteja, criamos um timer que verifica de tempo em tempo (intervalo entre 1 tiro da arma + 60 ms) se o jogador gastou mais uma munição, significa que ele esta atirando;
-    se ele não gastou mais nenhuma, significa que o jogador não esta atirando.
+    * Lgica da include: Primeiramente no "OnPlayerUpdate" verificamos se o jogador
+    est com uma arma em mos, caso esteja, criamos um timer que verifica de tempo em tempo (intervalo entre 1 tiro da arma + 60 ms) se o jogador gastou mais uma munio, significa que ele esta atirando;
+    se ele no gastou mais nenhuma, significa que o jogador no esta atirando.
     
-    * OBS.: O timer se repete até o jogador tirar a arma de mãos. Caso o jogador trocar de arma, deletamos
-    o timer da arma antiga e criamos um timer da arma nova, que tambem se repete entre o intervalo de um tiro à outro. Verificamos também se o jogador que está segurando a arma atirou, antes de liberar a lógica.
+    * OBS.: O timer se repete at o jogador tirar a arma de mos. Caso o jogador trocar de arma, deletamos
+    o timer da arma antiga e criamos um timer da arma nova, que tambem se repete entre o intervalo de um tiro  outro. Verificamos tambm se o jogador que est segurando a arma atirou, antes de liberar a lgica.
     
     If there is a problem, create an issue in the include repository!
     
@@ -104,7 +104,7 @@ new const SD_WeaInfo[SD_MAX_WEAPONS][SD_E_WEAPON_INFO] = {
 
 // ========== > STOCK ONLY FOR USE!!!
 stock bool:IsPlayerShooting(playerid){
-	return (SD_PlayerShooting[playerid]);
+	return SD_PlayerShooting[playerid];
 }
 
 // ========== > Timer Functions
@@ -186,7 +186,7 @@ public OnPlayerUpdate(playerid){
         	KillTimer(SD_TPlayerShooting[playerid]);
         	SD_PlayerCurrentWeapon[playerid] = SD_pwea;
         	SD_TPlayerShooting[playerid] = SetTimerEx("SD_LogicTimer", (SD_WeaInfo[SD_PlayerCurrentWeapon[playerid]][SD_WEAPON_SHOT_INTERVAL] + 60), true, "d", playerid);
-        	
+
         	#if SD_DEBUG_MODE == true
 				print("[ShotDetect - DEBUG]: OnPlayerUpdate (3)");
 		    #endif
@@ -263,4 +263,6 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 #define OnPlayerWeaponShot SD_OnPlayerWeaponShot
 #if defined SD_OnPlayerWeaponShot
     forward SD_OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY, Float:fZ);
-    #endif
+#endif
+
+// EOF.
