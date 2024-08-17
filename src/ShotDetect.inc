@@ -137,12 +137,13 @@ public SD_LogicTimer(playerid){ //"Logic Timer"
 // ========== > PUBLIC'S
 public OnPlayerConnect(playerid){
 	if(SD_TPlayerShooting[playerid]) KillTimer(SD_TPlayerShooting[playerid]); //Delete Logic Timer.
-	SD_OldShotsFired[playerid] = 0; //Resets the "Old Expended Ammunition" Variable
-	SD_ShotsFired[playerid] = 0; //Resets the "Current Ammunition Expended" Variable
-	SD_PlayerShooting[playerid] = false; //Player is no longer shooting.
-	SD_PlayerCurrentWeapon[playerid] = 0; // Reset Player Weapon Variable
-	
-	#if SD_DEBUG_MODE == true
+	SD_OldShotsFired[playerid] = //Resets the "Old Expended Ammunition" Variable
+        SD_ShotsFired[playerid] = //Resets the "Current Ammunition Expended" Variable
+        SD_PlayerShooting[playerid] = //Player is no longer shooting.
+        SD_PlayerCurrentWeapon[playerid] = 0 // Reset Player Weapon Variable
+    ;
+
+    #if SD_DEBUG_MODE == true
 		print("[ShotDetect - DEBUG]: OnPlayerConnect");
     #endif
 
@@ -155,10 +156,11 @@ public OnPlayerConnect(playerid){
 
 public OnPlayerDisconnect(playerid, reason){
 	if(SD_TPlayerShooting[playerid]) KillTimer(SD_TPlayerShooting[playerid]); //Delete Logic Timer.
-	SD_OldShotsFired[playerid] = 0; //Resets the "Old Expended Ammunition" Variable
-	SD_ShotsFired[playerid] = 0; //Resets the "Current Ammunition Expended" Variable
-	SD_PlayerShooting[playerid] = false; //Player is no longer shooting.
-	SD_PlayerCurrentWeapon[playerid] = 0; // Reset Player Weapon Variable
+	SD_OldShotsFired[playerid] = //Resets the "Old Expended Ammunition" Variable
+        SD_ShotsFired[playerid] = //Resets the "Current Ammunition Expended" Variable
+        SD_PlayerShooting[playerid] = //Player is no longer shooting.
+        SD_PlayerCurrentWeapon[playerid] = 0 // Reset Player Weapon Variable
+    ;
 
 	#if SD_DEBUG_MODE == true
 		print("[ShotDetect - DEBUG]: OnPlayerDisconnect");
