@@ -28,4 +28,4 @@ open-source project
 ## Contact
 
 Send me an email: bitsaindeveloper@gmail.com<br>
-Or also send a message via discord: XXXX
+Or also send a message via discord:
