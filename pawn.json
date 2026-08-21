@@ -1,0 +1,13 @@
+{
+	"user": "BitSain",
+	"repo": "SAMP-ShotDetect",
+	"entry": "tests/smoke.pwn",
+	"output": "tests/smoke.amx",
+	"preset": "samp",
+	"experimental": {
+		"build_file": false
+	},
+	"dependencies": [
+		"pawn-lang/samp-stdlib@master"
+	]
+}

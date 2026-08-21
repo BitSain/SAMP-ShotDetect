@@ -1,0 +1,42 @@
+# sampctl dependencies, lockfiles and generated state
+dependencies/
+pawn.lock
+.sampctl/
+sampctl_build_file.inc
+
+# Pawn compiler and build output
+*.amx
+*.asm
+*.lst
+build/
+out/
+*.log
+
+# Local server/runtime files
+server.cfg
+config.json
+plugins/
+components/
+filterscripts/
+gamemodes/
+npc-modes/
+npcmodes/
+scriptfiles/
+*.exe
+*.dll
+*.so
+announce
+samp03svr
+samp-npc
+omp-server
+omp-server.exe
+
+# Logs and crash reports
+logs/
+server_log.txt
+crashinfo.txt
+samp.ban
+
+# Editor state
+*.sublime-workspace
+.vscode/*.log
