@@ -10,8 +10,8 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    name: Build package
+  build-openmp:
+    name: Build open.mp package
     runs-on: ubuntu-latest
 
     steps:
@@ -28,15 +28,78 @@ jobs:
           sudo install -m 0755 /tmp/sampctl /usr/local/bin/sampctl
           sampctl version
 
-      - name: Build smoke test
+      - name: Ensure open.mp dependencies
+        run: sampctl ensure --bare --no-lock
+
+      - name: Build open.mp smoke test
         run: sampctl build --bare --no-lock
 
-      - name: Verify clean package metadata
+      - name: Verify open.mp package metadata
         shell: bash
         run: |
           set -euo pipefail
           test -f ShotDetect.inc
+          test -f pawn.json
           test -f tests/smoke.pwn
+          grep -q '"preset": "openmp"' pawn.json
+          grep -q 'openmultiplayer/omp-stdlib' pawn.json
           test ! -e sampctl_build_file.inc
           test ! -e pawn.lock
           git diff --exit-code
+
+  build-samp:
+    name: Build SA-MP compatibility smoke test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install sampctl
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="1.14.1"
+          curl -fsSL -o /tmp/sampctl.tar.gz "https://github.com/Southclaws/sampctl/releases/download/${version}/sampctl_${version}_linux_amd64.tar.gz"
+          tar -xzf /tmp/sampctl.tar.gz -C /tmp
+          sudo install -m 0755 /tmp/sampctl /usr/local/bin/sampctl
+          sampctl version
+
+      - name: Prepare isolated SA-MP package
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/shotdetect-samp-compat
+          mkdir -p /tmp/shotdetect-samp-compat
+          cp ShotDetect.inc /tmp/shotdetect-samp-compat/ShotDetect.inc
+          cp tests/smoke_samp.pwn /tmp/shotdetect-samp-compat/smoke_samp.pwn
+          cat > /tmp/shotdetect-samp-compat/pawn.json <<'JSON'
+          {
+            "user": "BitSain",
+            "repo": "SAMP-ShotDetect-samp-compat",
+            "entry": "smoke_samp.pwn",
+            "output": "smoke_samp.amx",
+            "preset": "samp",
+            "experimental": {
+              "build_file": false
+            },
+            "dependencies": [
+              "pawn-lang/samp-stdlib@master"
+            ]
+          }
+          JSON
+
+      - name: Ensure SA-MP dependencies
+        run: sampctl ensure --dir /tmp/shotdetect-samp-compat --bare --no-lock
+
+      - name: Build SA-MP smoke test
+        run: sampctl build --dir /tmp/shotdetect-samp-compat --bare --no-lock
+
+      - name: Verify SA-MP compatibility inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f tests/smoke_samp.pwn
+          grep -q '#include <a_samp>' tests/smoke_samp.pwn
+          test ! -e pawn.lock
+          test ! -e sampctl_build_file.inc

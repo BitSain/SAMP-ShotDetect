@@ -1,8 +1,8 @@
 # Migration Guide
 
-## From the previous version to 2.1.0
+## From the previous version to 2.2.0
 
-The main call remains compatible:
+The main call remains compatible, and the package now prioritizes open.mp while retaining a tested SA-MP fallback:
 
 ```pawn
 if (IsPlayerShooting(playerid))
@@ -24,6 +24,15 @@ sampctl install BitSain/SAMP-ShotDetect
 Then update the source to:
 
 ```pawn
+// open.mp (recommended)
+#include <open.mp>
+#include <ShotDetect>
+```
+
+For a traditional SA-MP project, use:
+
+```pawn
+#include <a_samp>
 #include <ShotDetect>
 ```
 
@@ -51,6 +60,23 @@ Projects that need to react to state transitions can enable:
 ```
 
 Then implement `OnPlayerShootingStateChange`. The callback is not required for basic usage and remains disabled by default.
+
+## open.mp-first package configuration
+
+The package manifest now uses the `openmp` preset and the official dependency chain recommended by sampctl:
+
+```json
+{
+    "preset": "openmp",
+    "dependencies": [
+        "openmultiplayer/omp-stdlib",
+        "pawn-lang/samp-stdlib@open.mp",
+        "pawn-lang/pawn-stdlib@open.mp"
+    ]
+}
+```
+
+The `openmultiplayer/omp-stdlib` package currently has no tagged releases, so sampctl resolves its default branch. SA-MP consumers should keep a traditional `pawn-lang/samp-stdlib@master` dependency in their own project. The repository CI compiles `tests/smoke_samp.pwn` separately against that dependency.
 
 ## Performance
 

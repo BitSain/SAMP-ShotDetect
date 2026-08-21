@@ -33,12 +33,14 @@ Primary detection is driven by `OnPlayerKeyStateChange`. Periodic reconciliation
 
 There are two composition modes. When `y_hooks` has already been loaded, the library uses `hook` and does not create ALS caches. Without YSI, it installs ALS for the supported callbacks and resolves the callback chain once on the first `OnPlayerConnect`. Return values from later callbacks are preserved by dynamic forwarding.
 
-The library does not require YSI. This keeps dependencies and runtime cost minimal for traditional SA-MP projects without preventing hook composition in projects that already adopt YSI.
+The library does not require YSI. This keeps dependencies and runtime cost minimal for both open.mp projects and traditional SA-MP projects without preventing hook composition in projects that already adopt YSI.
 
 ## Compatibility
 
-The include accepts `<a_samp>` and `<open.mp>`. For older SA-MP headers, it provides neutral aliases for tags that may not exist. With open.mp, official tags are preserved. The public package keeps `ShotDetect.inc` at the root because sampctl adds a dependency root to the include path when `include_path` is not specified.
+The package is open.mp-first and targets open.mp `v1.5.8.3079` through the `openmp` sampctl preset and the official `openmultiplayer/omp-stdlib` dependency. The include accepts `<open.mp>` first and falls back to `<a_samp>` for traditional SA-MP projects. For older SA-MP headers, it provides neutral aliases for tags that may not exist. With open.mp, official tags are preserved. The public package keeps `ShotDetect.inc` at the root because sampctl adds a dependency root to the include path when `include_path` is not specified.
+
+The open.mp `a_samp.inc` wrapper is not treated as the legacy compatibility test. CI uses `pawn-lang/samp-stdlib@master` in a separate `samp`-preset package so the fallback path is compiled against the traditional SA-MP header set.
 
 ## Testing
 
-`tests/smoke.pwn` validates the package installation path using exactly `#include <ShotDetect>`. The CI workflow recompiles this smoke test with `sampctl build --bare --no-lock`. The smoke test detects layout, manifest, dependency, include-guard, and compilation regressions; behavior with a real connected client must still be tested on a server.
+`tests/smoke.pwn` validates the open.mp package installation path with an explicit `<open.mp>` include and exactly `#include <ShotDetect>`. `tests/smoke_samp.pwn` validates the traditional `<a_samp>` path. The CI workflow recompiles both smoke tests in separate environments. These tests detect layout, manifest, dependency, include-guard, and compilation regressions; behavior with a real connected client must still be tested on a server.

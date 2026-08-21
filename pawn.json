@@ -3,11 +3,13 @@
 	"repo": "SAMP-ShotDetect",
 	"entry": "tests/smoke.pwn",
 	"output": "tests/smoke.amx",
-	"preset": "samp",
+	"preset": "openmp",
 	"experimental": {
 		"build_file": false
 	},
 	"dependencies": [
-		"pawn-lang/samp-stdlib@master"
+		"openmultiplayer/omp-stdlib",
+		"pawn-lang/samp-stdlib@open.mp",
+		"pawn-lang/pawn-stdlib@open.mp"
 	]
 }

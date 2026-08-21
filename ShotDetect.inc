@@ -1,7 +1,9 @@
 /*
-    ShotDetect (SAMP/open.mp)
-    Version: 2.1.0
-    Updated: 20/08/2026
+    ShotDetect (open.mp first, SA-MP compatible)
+    Version: 2.2.0
+    Updated: 21/08/2026
+    Primary target: open.mp v1.5.8.3079
+    Compatibility target: SA-MP 0.3.7
     Author: BitSain (https://github.com/BitSain/)
 
     Detects on-foot fire intent: KEY_FIRE held with a firearm equipped.
@@ -27,6 +29,8 @@
 
 // -----------------------------------------------------------------------------
 // Base include and tag compatibility
+// open.mp is intentionally attempted first. The legacy SA-MP header remains a
+// supported fallback for projects that compile against the traditional stdlib.
 // -----------------------------------------------------------------------------
 
 #if !defined _INC_open_mp && !defined _INC_a_samp
@@ -56,7 +60,7 @@
     #define WEAPON: _:
 #endif
 
-#define SD_VERSION "2.1.0"
+#define SD_VERSION "2.2.0"
 
 // -----------------------------------------------------------------------------
 // Configuration

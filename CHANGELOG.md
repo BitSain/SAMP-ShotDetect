@@ -4,6 +4,21 @@ All notable ShotDetect changes are documented in this file.
 
 The project follows [Semantic Versioning](https://semver.org/).
 
+## [2.2.0] — 2026-08-21
+
+### Added
+
+- Open.mp-first package configuration using the `openmp` preset.
+- Official open.mp dependency chain: `openmultiplayer/omp-stdlib`, `pawn-lang/samp-stdlib@open.mp`, and `pawn-lang/pawn-stdlib@open.mp`.
+- Explicit open.mp smoke test and separate SA-MP compatibility smoke test.
+- CI validation for both open.mp and traditional SA-MP stdlib environments.
+
+### Changed
+
+- Updated the include metadata and public documentation to target open.mp `v1.5.8.3079` as the primary environment.
+- Preserved `<a_samp>` fallback support and neutral tag aliases for traditional SA-MP headers.
+- Updated installation, migration, architecture, and release guidance for dual-environment support.
+
 ## [2.1.0] — 2026-08-20
 
 ### Added

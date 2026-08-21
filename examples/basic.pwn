@@ -1,3 +1,4 @@
+#include <open.mp>
 #include <ShotDetect>
 
 public OnPlayerUpdate(playerid)

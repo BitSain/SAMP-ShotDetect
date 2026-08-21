@@ -1,4 +1,4 @@
-#include <open.mp>
+#include <a_samp>
 #include <ShotDetect>
 
 main()
