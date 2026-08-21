@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build package",
+      "type": "shell",
+      "command": "sampctl build --bare --no-lock",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "silent",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$sampctl"
+    },
+    {
+      "label": "build package watcher",
+      "type": "shell",
+      "command": "sampctl build --bare --no-lock --watch",
+      "group": "build",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "silent",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$sampctl"
+    },
+    {
+      "label": "validate package",
+      "type": "shell",
+      "command": "sampctl build --bare --no-lock",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$sampctl"
+    }
+  ]
+}

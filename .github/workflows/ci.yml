@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install sampctl
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="1.14.1"
+          curl -fsSL -o /tmp/sampctl.tar.gz "https://github.com/Southclaws/sampctl/releases/download/${version}/sampctl_${version}_linux_amd64.tar.gz"
+          tar -xzf /tmp/sampctl.tar.gz -C /tmp
+          sudo install -m 0755 /tmp/sampctl /usr/local/bin/sampctl
+          sampctl version
+
+      - name: Build smoke test
+        run: sampctl build --bare --no-lock
+
+      - name: Verify clean package metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f ShotDetect.inc
+          test -f tests/smoke.pwn
+          test ! -e sampctl_build_file.inc
+          test ! -e pawn.lock
+          git diff --exit-code
